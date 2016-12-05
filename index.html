@@ -1,6 +1,54 @@
-<html>
-	<body>
-		<h1>Hello World</h1>
-		<h2>This is Hai Lan's test new page in gh-pages branch</h2>
-	</body>
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <style type="text/css">
+        </style>
+
+        <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    </head>
+    <body>
+        <script>
+
+            //Width and height
+            var width = 500;
+            var height = 300;
+
+            //Create SVG element
+            var canvas = d3.select("body")
+                        .append("svg")
+                        .attr("width", 500)
+                        .attr("height", 300);
+
+      //      Load in GeoJSON data
+            d3.json("https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json", function(json){
+
+              var group = canvas.selectAll("g")
+                          .data(json.features)
+                          .enter()
+                          .append("g")
+
+              var projection = d3.geo.mercator();
+              var path =d3.geo.path().projection(projection);
+
+              var area = group.append("path")
+                        .attr("d",path)
+                        .attr("class","area")
+                        .attr("fill","steelblue");
+
+            });
+
+            // d3.json("https://bost.ocks.org/mike/map/uk.json", function(error, uk) {
+            //   if (error) return console.error(error);
+
+            //   canvas.append("path")
+            //     .datum(topojson.feature(uk, uk.objects.subunits))
+            //     .attr("d", d3.geo.path().projection(d3.geo.mercator()));
+            // });
+
+
+
+        </script>
+    </body>
 </html>
