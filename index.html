@@ -22,7 +22,7 @@
                         .attr("height", 300);
 
       //      Load in GeoJSON data
-            d3.json("https://github.com/hlan/d3labs/blob/master/mnmappluto.geojson", function(json){
+            d3.json("https://github.com/hlan/d3labs/blob/master/mnmappluto.json", function(json){
 
               var group = canvas.selectAll("g")
                           .data(json.features)
